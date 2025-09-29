@@ -1,0 +1,29 @@
+import statistics
+
+def sleep_duration_stats(durations):
+    """
+    Calculate statistics for a list of sleep durations (in hours).
+    Returns a dictionary with mean, median, min, max, and standard deviation.
+    """
+    if not durations:
+        return {
+            'mean': None,
+            'median': None,
+            'min': None,
+            'max': None,
+            'stdev': None
+        }
+    return {
+        'mean': statistics.mean(durations),
+        'median': statistics.median(durations),
+        'min': min(durations),
+        'max': max(durations),
+        'stdev': statistics.stdev(durations) if len(durations) > 1 else 0.0
+    }
+
+if __name__ == "__main__":
+    # Example usage
+    sleep_hours = [7.5, 8, 6.5, 7, 8.2, 7.8, 6]
+    stats = sleep_duration_stats(sleep_hours)
+    for key, value in stats.items():
+        print(f"{key}: {value}")
